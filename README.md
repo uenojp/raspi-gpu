@@ -29,3 +29,10 @@ sudo usermod --append --groups video $USER
 sudo reboot now
 ```
 
+## note
+`def execute(self, code, uniforms=None, timeout_sec=10, workgroup=(16, 1, 1), wgs_per_sg=16, thread=1)`
+
+## errata
+- p. 20
+    - s/result変数/out変数/
+
