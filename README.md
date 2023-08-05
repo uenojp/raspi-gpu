@@ -19,7 +19,9 @@ pip3 install --user git+https://github.com/Idein/py-videocore6.git
 # GPU memory.
 # default: 64 (MB)
 # ref. https://www.raspberrypi.com/documentation/computers/config_txt.html
-echo -e '\n# GPU available memory\ngpu_mem=256' | sudo tee -a /boot/firmware/usercfg.txt
+echo -e '\n# GPU available memory\ngpu_mem=256' | sudo tee -a /boot/config.txt
+# [Ubuntu]
+# echo -e '\n# GPU available memory\ngpu_mem=256' | sudo tee -a /boot/firmware/usercfg.txt
 
 # Allow $USER access to the GPU.
 sudo usermod --append --groups video $USER
