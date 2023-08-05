@@ -1,0 +1,14 @@
+#!/bin/bash -u
+
+usage() {
+    echo "Usage: $(basename "$0") SCRIPT" 1>&2
+}
+
+[[ $# != 1 ]] && usage && exit 1
+
+script="$1"
+commands="cd raspi-gpu/ && ./$script"
+
+rsync -avz --exclude '.*.swp' "$PWD" raspberrypi.local:~ &> /dev/null
+ssh raspberrypi.local "$commands"
+
