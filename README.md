@@ -33,6 +33,10 @@ sudo reboot now
 `def execute(self, code, uniforms=None, timeout_sec=10, workgroup=(16, 1, 1), wgs_per_sg=16, thread=1)`
 
 ## errata
-- p. 20
+- p.20
     - s/result変数/out変数/
+- p.22
+    - s/リストの4要素目/リストの3要素目/
+    - ここだけuniformが1-basedになっている
+        - p.23 > 出力を見てみるとuniformの0番目と...
 
