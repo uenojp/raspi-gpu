@@ -16,7 +16,7 @@ def kernel(asm):
     add(r0, r0, r2)
     add(r1, r1, r2)
 
-    # H->D: r0
+    # H->D: r3
     mov(tmua, r0, sig=thrsw)
     nop()
     nop()
@@ -25,7 +25,7 @@ def kernel(asm):
     # twice
     shl(r3, r3, 1)
 
-    # D->H: r1
+    # D->H: r3
     mov(tmud, r3)
     mov(tmua, r1)
     tmuwt()
