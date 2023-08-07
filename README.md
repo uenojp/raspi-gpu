@@ -50,6 +50,8 @@ sudo reboot now
                - g.clear()
                - for key, value in g_orig.items():
                -     g[key] = value
+- p.31
+    - drv.allocで確保した2次元配列のアドレスは連続
 
 ## errata
 - p.20
