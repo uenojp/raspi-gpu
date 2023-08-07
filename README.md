@@ -30,7 +30,26 @@ sudo reboot now
 ```
 
 ## note
-`def execute(self, code, uniforms=None, timeout_sec=10, workgroup=(16, 1, 1), wgs_per_sg=16, thread=1)`
+- `def execute(self, code, uniforms=None, timeout_sec=10, workgroup=(16, 1, 1), wgs_per_sg=16, thread=1)`
+- p.26
+    - r0-5, rf0-63: 32bit x16
+- p.27
+    - g['in_a'] = g['rf0']はレジスタのalias
+        - 以降のin_aをすべてrf0にすれば動くし、in_aとrf0を混在させても動く
+        - noalias-exchange.pyはエイリアス張らない版
+    - 各レジスタ（r0とかrf10とか）はグローバル変数なので、globals()['x']=globals()['y']でエイリアス張れる
+    - qpuデコレータを見るとわかりやすい
+        - py-videocore6/videocore6/assembler.py
+            - decoratorはwrapperなので、funcがkernelになる
+        - 処理としては、
+            1. kernelを実行する前にグローバル変数としてレジスタ定義
+                - g['raw'] = functools.partial(Raw, asm) etc...
+            2. kernel実行
+                - func(asm, *args, **kwargs)
+            3. 実行前のグローバル変数の状態に戻す
+               - g.clear()
+               - for key, value in g_orig.items():
+               -     g[key] = value
 
 ## errata
 - p.20
